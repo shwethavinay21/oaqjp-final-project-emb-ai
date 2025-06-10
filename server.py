@@ -12,29 +12,21 @@ def sent_analyzer():
     response = emotion_detector(text_to_analyze)
 
     # Extract the label and score from the response
-    anger = response['anger']
-    disgust = response['disgust']
-    fear = response['fear']
-    joy = response['joy']
-    sadness = response['sadness']
+    anger_score = response['anger']
+    disgust_score = response['disgust']
+    fear_score = response['fear']
+    joy_score = response['joy']
+    sadness_score = response['sadness']
     dominant_emotion = response['dominant_emotion']
 
     # Return a formatted string with the emotions and score
-    score = {
-                'anger': anger_score,
-                'disgust': disgust_score,
-                'fear': fear_score,
-                'joy': joy_score,
-                'and sadness': sadness_score,
-            }       
-    score = str(score)
-    return "For the given statement, the system response is {}. The dominant emotion is {}.".format(score,dominant_emotion)
+    return "For the given statement, the system response is {}, {}, {}, {}, {}. The dominant emotion is {}." .format(anger_score,disgust_score,fear_score,joy_score,sadness_score,dominant_emotion)
     
-    # Render the HTML template using render_index_page
-    @app.route("/")
-    def render_index_page():
-        return render_template('index.html')
+# Render the HTML template using render_index_page
+@app.route("/")
+def render_index_page():
+    return render_template('index.html')
 
-    if __name__ == "__main__":
-        app.run(host="0.0.0.0", port=5000)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=6000)
 
