@@ -20,7 +20,15 @@ def sent_analyzer():
     dominant_emotion = response['dominant_emotion']
 
     # Return a formatted string with the emotions and score
-    return "For the given statement, the system response is 'anger' : {} , 'disgust': {}, 'fear': {}, 'joy': {} and 'sadness': {}. The dominant emotion is {}."
+    score = {
+                'anger': anger_score,
+                'disgust': disgust_score,
+                'fear': fear_score,
+                'joy': joy_score,
+                'and sadness': sadness_score,
+            }       
+    score = str(score)
+    return "For the given statement, the system response is {}. The dominant emotion is {}.".format(score,dominant_emotion)
     
     # Render the HTML template using render_index_page
     @app.route("/")
@@ -28,5 +36,5 @@ def sent_analyzer():
         return render_template('index.html')
 
     if __name__ == "__main__":
-        app.run(host="0.0.0.0", port=5500)
+        app.run(host="0.0.0.0", port=5000)
 
