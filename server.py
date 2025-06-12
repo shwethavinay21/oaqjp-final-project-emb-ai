@@ -1,10 +1,15 @@
+""" import the emotion_detector function from the EmotionDetection package.
+"""
 from flask import Flask, render_template, request
 from EmotionDetection.emotion_detection import emotion_detector
 
-"""
+""" Emotion Detector initiates the application 
 """
 app = Flask("Emotion Detector")
 
+"""
+Define the function sent_analyzer
+"""
 @app.route("/emotionDetector")
 def sent_analyzer():
     # Retrieve the text to analyze from the request arguments
@@ -26,7 +31,9 @@ def sent_analyzer():
         return "Invalid input! Try again."
     else:
         # Return a formatted string with the emotions and score
-        return "For the given statement, the system response is {}, {}, {}, {}, {}. The dominant emotion is {}." .format(anger_score,disgust_score,fear_score,joy_score,sadness_score,dominant_emotion)
+        return ("For the given statement, the system response is {}, {}, {}, {}, {}." 
+        "The dominant emotion is {}."
+        .format(anger_score,disgust_score,fear_score,joy_score,sadness_score,dominant_emotion))
     
 # Render the HTML template using render_index_page
 @app.route("/")
